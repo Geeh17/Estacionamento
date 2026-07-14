@@ -32,15 +32,7 @@ Estacionamento-main/
 ## ▶️ Como executar
 
 Pré-requisito: [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) instalado.
-
-```bash
-# Clone o repositório
-git clone <url-do-repositorio>
-cd Estacionamento-main/Estacionamento
-
-# Rode o projeto
-dotnet run
-```
+Usar a IDE visual studio 2026
 
 Ao iniciar, informe o preço inicial e o preço por hora. Em seguida, use o menu numérico para interagir com o sistema.
 
