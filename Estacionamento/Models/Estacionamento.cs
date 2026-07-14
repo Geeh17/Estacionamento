@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace DesafioFundamentos.Models
@@ -9,6 +10,7 @@ namespace DesafioFundamentos.Models
         private decimal precoInicial;
         private decimal precoPorHora;
         private List<string> veiculos;
+        private static readonly CultureInfo culturaPtBr = new CultureInfo("pt-BR");
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
         {
@@ -20,18 +22,41 @@ namespace DesafioFundamentos.Models
         public void AdicionarVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            string placa = Console.ReadLine();
-            veiculos.Add(placa.ToUpper());
+            string? placaDigitada = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(placaDigitada))
+            {
+                Console.WriteLine("Placa inválida. Operação cancelada.");
+                return;
+            }
+
+            string placa = placaDigitada.Trim().ToUpper();
+
+            if (veiculos.Contains(placa))
+            {
+                Console.WriteLine($"O veículo {placa} já está estacionado aqui.");
+                return;
+            }
+
+            veiculos.Add(placa);
             Console.WriteLine($"Veículo {placa} adicionado ao estacionamento.");
         }
 
         public void RemoverVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para remover:");
-            string placa = Console.ReadLine().ToUpper();
+            string? placaDigitada = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(placaDigitada))
+            {
+                Console.WriteLine("Placa inválida. Operação cancelada.");
+                return;
+            }
+
+            string placa = placaDigitada.Trim().ToUpper();
 
             // Verifica se o veículo existe
-            if (veiculos.Any(x => x.ToUpper() == placa))
+            if (veiculos.Contains(placa))
             {
                 Console.WriteLine("Digite a quantidade de horas que o veículo permaneceu estacionado:");
                 int horas;
@@ -41,11 +66,11 @@ namespace DesafioFundamentos.Models
                 }
 
                 decimal valorTotal = precoInicial + (precoPorHora * horas);
-                
-                // Removendo a placa digitada da lista de veículos
+
+                // Removendo a placa da lista de veículos
                 veiculos.Remove(placa);
 
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: {valorTotal.ToString("C", culturaPtBr)}");
             }
             else
             {

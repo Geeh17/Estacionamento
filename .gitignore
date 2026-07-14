@@ -1,0 +1,46 @@
+## Ignora artefatos de build do .NET/Visual Studio
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.sln.docstates
+.vsconfig
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Arquivos de teste e cobertura
+[Tt]est[Rr]esult*/
+*.trx
+coverage*.json
+coverage*.xml
+coverage*.info
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Outros
+*.pdb
+*.cache
